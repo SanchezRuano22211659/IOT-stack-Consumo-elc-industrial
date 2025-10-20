@@ -1,4 +1,3 @@
-
 use rumqttc::{MqttOptions, AsyncClient, QoS, Transport};
 use tokio::{task, time};
 use serde::Serialize;
@@ -115,4 +114,3 @@ async fn publish_energy_data(client: AsyncClient, topic: String, device_id: Stri
         }
     }
 }
-

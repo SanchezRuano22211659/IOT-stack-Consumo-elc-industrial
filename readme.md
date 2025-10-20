@@ -211,11 +211,33 @@ async fn publish_energy_data(client: AsyncClient, topic: String, device_id: Stri
 ## Configuración de Telegraf
 
 ```
+[[inputs.mqtt_consumer]]
+  ## Dirección del broker MQTT
+  servers = ["ssl://100.118.141.104:8883"]
 
+  topics = ["industry/energy/+"]
+
+  ## Formato de los mensajes JSON
+  data_format = "json"
+
+  ## Origen del sensor
+  json_string_fields = ["device_id"]
+  tag_keys = ["device_id"]
+
+[[outputs.influxdb_v2]]
+  urls = ["http://127.0.0.1:8086"]
+  token = "***"
+  organization = "iot-lab"
+  bucket = "sensores"
 ```
 
 ## Configuración de Mosquitto
 
 ```
-
+listener 8883
+cafile /etc/mosquitto/certs/ca.crt
+certfile /etc/mosquitto/certs/server.crt
+keyfile /etc/mosquitto/certs/server.key
+require_certificate false
+allow_anonymous true
 ```
