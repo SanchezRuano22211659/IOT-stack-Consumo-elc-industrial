@@ -22,7 +22,7 @@ struct EnergyData {
 // Proceso principal
 #[tokio::main]
 async fn main() {
-    //Recolección de los valores iniciales desde la consola
+    //Recoleccion de los valores iniciales desde la consola
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
         eprintln!("Uso: {} <device_id> <topic>", args[0]);
@@ -33,9 +33,9 @@ async fn main() {
     let topic = args[2].clone();
 
     println!("Iniciando sensor energético '{}'", device_id);
-    println!("Publicando en tópico '{}'", topic);
+    println!("Publicando en topico '{}'", topic);
 
-    // Conexión inicial a través de TLS(8883)
+    // Conexion inicial a través de TLS(8883)
     let mqtt_host = "100.118.141.104";
     let mqtt_port = 8883;
 
@@ -54,14 +54,14 @@ async fn main() {
     let transport = Transport::tls(ca_cert, None, None);
     mqtt_options.set_transport(transport);
 
-    // Se da la conexión usando los datos iniciales, en este caso 
+    // Se da la conexion usando los datos iniciales, en este caso 
     // unicamente el certificado 
     let (client, mut eventloop) = AsyncClient::new(mqtt_options, 10);
 
     let topic_clone = topic.clone();
     let device_id_clone = device_id.clone();
 
-    // Proceso para iniciar el envío de datos a MQTT
+    // Proceso para iniciar el envio de datos a MQTT
     task::spawn(async move {
         publish_energy_data(client, topic_clone, device_id_clone).await;
     });
@@ -90,7 +90,7 @@ async fn publish_energy_data(client: AsyncClient, topic: String, device_id: Stri
         let power_factor: f32 = rand::thread_rng().gen_range(0.8..1.0);
         let power = voltage * current * power_factor;
 
-        // Usando los datos acumulados, se mide la energía acumulada
+        // Usando los datos acumulados, se mide la energia acumulada
         total_energy += (power * (interval.as_secs_f32() / 3600.0)) / 1000.0;
 
         let data = EnergyData {
