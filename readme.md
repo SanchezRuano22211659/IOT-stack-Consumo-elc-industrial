@@ -83,6 +83,8 @@ flowchart LR
 
 # Pruebas
 
+[Prueba inicial del dashboard](https://www.loom.com/share/69a5d33da5864d1e9c16420d36b75e8b?sid=cff58493-1e7d-4c0d-a73f-fdc059822c71)
+
 ---
 
 # Códigos
@@ -215,13 +217,14 @@ async fn publish_energy_data(client: AsyncClient, topic: String, device_id: Stri
   ## Dirección del broker MQTT
   servers = ["ssl://100.118.141.104:8883"]
 
+  tls_ca = "/etc/mosquitto/certs/ca.crt"
+
   topics = ["industry/energy/+"]
 
   ## Formato de los mensajes JSON
   data_format = "json"
 
   ## Origen del sensor
-  json_string_fields = ["device_id"]
   tag_keys = ["device_id"]
 
 [[outputs.influxdb_v2]]
