@@ -84,7 +84,7 @@ flowchart LR
 # Pruebas
 
 [Prueba inicial del dashboard](https://www.loom.com/share/69a5d33da5864d1e9c16420d36b75e8b?sid=cff58493-1e7d-4c0d-a73f-fdc059822c71)
-
+[Prueba final del dashboard](https://www.loom.com/share/3253a2dcbde748f8b6318053b1623540?sid=408b553d-5b6f-4b0c-b584-7c027602cd7b)
 ---
 
 # Códigos
